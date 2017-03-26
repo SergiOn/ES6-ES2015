@@ -1,0 +1,19 @@
+{
+  "name": "es6-es2015",
+  "version": "1.0.0",
+  "description": "ES6-ES2015-screencast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergiOn/ES6-ES2015-screencast.git"
+  },
+  "author": "SergiOn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergiOn/ES6-ES2015-screencast/issues"
+  },
+  "homepage": "https://github.com/SergiOn/ES6-ES2015-screencast#readme"
+}
