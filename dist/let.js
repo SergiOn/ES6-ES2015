@@ -1,7 +1,7 @@
 'use strict';
 
 if (true) {
-    var _version = 'ES6';
+    var version = 'ES6';
 }
 
-console.log(version);
+// console.log(version);
