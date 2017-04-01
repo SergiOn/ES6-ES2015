@@ -15,7 +15,7 @@ var numbers = [1, 2, 3];
 
 add.apply(undefined, numbers);
 
-function spred() {
+function spread() {
     for (var _len = arguments.length, n = Array(_len), _key = 0; _key < _len; _key++) {
         n[_key] = arguments[_key];
     }

@@ -14,7 +14,7 @@ let numbers = [1, 2, 3];
 
 add(...numbers);
 
-function spred(...n) {
+function spread(...n) {
     console.log(n);
 }
 
