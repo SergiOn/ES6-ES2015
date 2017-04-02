@@ -6,3 +6,7 @@
 <h3>#1 Installation and configuration Babel</h3>
 <h3>#2 Use let</h3>
 <h3>#3 Use const</h3>
+<h3>#4 Spread operator</h3>
+<h3>#5 Template strings</h3>
+<h3>#6 Function parameters</h3>
+<h3>#7 Cycle for...of</h3>
