@@ -11,3 +11,5 @@
 <h3>#6 Function parameters</h3>
 <h3>#7 Cycle for...of</h3>
 <h3>#8 Objects</h3>
+<h3>#9 Classes</h3>
+<h3>#10 Inheritance</h3>
