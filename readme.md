@@ -13,3 +13,10 @@
 <h3>#8 Objects</h3>
 <h3>#9 Classes</h3>
 <h3>#10 Inheritance</h3>
+<h3>#11 Classes and Inheritance in ES5, ES6</h3>
+<h3>#11.1 Expressions of classes</h3>
+<h3>#12 Arrow functions</h3>
+<pre>
+setTimeout === window.setTimeout
+"this" in "setTimeout" === "window"
+</pre>
