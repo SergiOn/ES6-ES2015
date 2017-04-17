@@ -13,3 +13,4 @@
 <h3>#8 Objects</h3>
 <h3>#9 Classes</h3>
 <h3>#10 Inheritance</h3>
+<h3>#11 Classes and Inheritance in ES5, ES6</h3>
