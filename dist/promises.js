@@ -58,6 +58,9 @@ function go(num) {
         var delay = Math.ceil(Math.random() * 3000);
         console.log(num, delay);
         setTimeout(function () {
+            if (delay > 2000) {
+                reject(num);
+            }
             resolve(num);
         }, delay);
     });
@@ -79,4 +82,12 @@ p3.then(function (a) {
 
 Promise.all([p1, p2, p3]).then(function (a) {
     return console.log(a);
+}).catch(function (error) {
+    return console.error(error);
+});
+
+Promise.all([p1, p2, p3]).then(function (a) {
+    return console.log(a);
+}).catch(function (error) {
+    return console.error(error);
 });

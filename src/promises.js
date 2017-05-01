@@ -55,6 +55,9 @@ function go(num) {
         let delay = Math.ceil(Math.random() * 3000);
         console.log(num, delay);
         setTimeout(() => {
+            if (delay > 2000) {
+                reject(num);
+            }
             resolve(num);
         }, delay);
     });
@@ -69,4 +72,9 @@ p2.then((a) => console.log(a));
 p3.then((a) => console.log(a));
 
 Promise.all([p1, p2, p3])
-    .then((a) => console.log(a));
+    .then((a) => console.log(a))
+    .catch((error) => console.error(error));
+
+Promise.race([p1, p2, p3])
+    .then((a) => console.log(a))
+    .catch((error) => console.error(error));
