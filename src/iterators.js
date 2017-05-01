@@ -32,6 +32,5 @@ let randomGenerator = {
 };
 
 
-for (let id of randomGenerator) {
-    console.log(id);
-}
+let random = randomGenerator[Symbol.iterator]();
+console.log(random.next().value);
