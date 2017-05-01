@@ -18,12 +18,12 @@ class SomeClass {
 
 
 function* generator() {
-    let result = yield;
-    yield;
+    let result = yield 10;
+    yield 20;
     console.log('Result1:', result);
-    yield ;
+    yield 30;
     console.log('Result2:', result);
-    yield ;
+    yield 40;
 }
 
 let iterator = generator();

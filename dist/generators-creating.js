@@ -25,22 +25,22 @@ function generator() {
             switch (_context.prev = _context.next) {
                 case 0:
                     _context.next = 2;
-                    return;
+                    return 10;
 
                 case 2:
                     result = _context.sent;
                     _context.next = 5;
-                    return;
+                    return 20;
 
                 case 5:
                     console.log('Result1:', result);
                     _context.next = 8;
-                    return;
+                    return 30;
 
                 case 8:
                     console.log('Result2:', result);
                     _context.next = 11;
-                    return;
+                    return 40;
 
                 case 11:
                 case 'end':
