@@ -40,6 +40,8 @@
 // console.log(iterator.next());
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var _marked = [range].map(regeneratorRuntime.mark);
 
 function range(start, end) {
@@ -92,6 +94,49 @@ try {
     } finally {
         if (_didIteratorError) {
             throw _iteratorError;
+        }
+    }
+}
+
+function range2(start, end) {
+    var current = start;
+    return _defineProperty({}, Symbol.iterator, function () {
+        return {
+            next: function next() {
+                var result = { value: undefined, done: true };
+
+                if (current <= end) {
+                    result.value = current;
+                    result.done = false;
+                    current++;
+                }
+                return result;
+            }
+        };
+    });
+}
+
+var _iteratorNormalCompletion2 = true;
+var _didIteratorError2 = false;
+var _iteratorError2 = undefined;
+
+try {
+    for (var _iterator2 = range2(1, 10)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var _num = _step2.value;
+
+        console.log(_num);
+    }
+} catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+} finally {
+    try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+        }
+    } finally {
+        if (_didIteratorError2) {
+            throw _iteratorError2;
         }
     }
 }

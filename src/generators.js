@@ -50,3 +50,27 @@ function* range(start, end) {
 for (let num of range(1, 10)) {
     console.log(num);
 }
+
+function range2(start, end) {
+    let current = start;
+    return {
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    let result = {value: undefined, done: true};
+
+                    if (current <= end) {
+                        result.value = current;
+                        result.done = false;
+                        current++;
+                    }
+                    return result;
+                }
+            }
+        }
+    }
+}
+
+for (let num of range2(1, 10)) {
+    console.log(num);
+}
