@@ -42,6 +42,25 @@ console.log(random.next().value);
 */
 
 
+class ArrayIterator {
+    constructor(array) {
+        this.array = array;
+        this.index = 0;
+    }
+
+    next() {
+        let result = { value: undefined, done: true };
+
+        if (this.index < this.array.length) {
+            result.value = this.array[this.index];
+            result.done = false;
+            this.index++;
+        }
+
+        return result;
+    }
+}
+
 class TaskList {
     constructor() {
         this.tasks = [];
@@ -52,22 +71,7 @@ class TaskList {
     }
 
     [Symbol.iterator]() {
-        let tasks = this.tasks;
-        let index = 0;
-
-        return {
-            next() {
-                let result = { value: undefined, done: true };
-
-                if (index < tasks.length) {
-                    result.value = tasks[index];
-                    result.done = false;
-                    index++;
-                }
-
-                return result;
-            }
-        }
+        return new ArrayIterator(this.tasks);
     }
 }
 

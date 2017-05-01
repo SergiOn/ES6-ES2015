@@ -45,6 +45,32 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var ArrayIterator = function () {
+    function ArrayIterator(array) {
+        _classCallCheck(this, ArrayIterator);
+
+        this.array = array;
+        this.index = 0;
+    }
+
+    _createClass(ArrayIterator, [{
+        key: 'next',
+        value: function next() {
+            var result = { value: undefined, done: true };
+
+            if (this.index < this.array.length) {
+                result.value = this.array[this.index];
+                result.done = false;
+                this.index++;
+            }
+
+            return result;
+        }
+    }]);
+
+    return ArrayIterator;
+}();
+
 var TaskList = function () {
     function TaskList() {
         _classCallCheck(this, TaskList);
@@ -64,22 +90,7 @@ var TaskList = function () {
     }, {
         key: Symbol.iterator,
         value: function value() {
-            var tasks = this.tasks;
-            var index = 0;
-
-            return {
-                next: function next() {
-                    var result = { value: undefined, done: true };
-
-                    if (index < tasks.length) {
-                        result.value = tasks[index];
-                        result.done = false;
-                        index++;
-                    }
-
-                    return result;
-                }
-            };
+            return new ArrayIterator(this.tasks);
         }
     }]);
 
