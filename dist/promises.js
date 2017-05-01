@@ -1,46 +1,50 @@
 'use strict';
 
-function applyForVisa(documents) {
-    console.log('Processing of an application');
+var input = document.getElementById('input');
+var movieList = document.getElementById('movies');
 
-    var promise = new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            var visa = { visa: true };
-            Math.random() > 0 ? resolve(visa) : reject('The visa is denied: lack of documents');
-        }, 2000);
+function deleteMovies() {
+    while (movieList.firstElementChild) {
+        movieList.removeChild(movieList.firstElementChild);
+    }
+}
+
+function addMovieToList(movie) {
+    var img = document.createElement('img');
+    img.src = movie.Poster;
+    movieList.appendChild(img);
+}
+
+function getData(url, done) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var json = JSON.parse(xhr.response);
+            console.log(json);
+            done(json.Search);
+        } else {
+            console.error(xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function (error) {
+        console.error(error);
+    };
+
+    xhr.send();
+}
+
+input.addEventListener('input', function (e) {
+    var search = e.target.value;
+
+    getData('http://omdbapi.com/?s=' + search, function () {
+        var movies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+        deleteMovies();
+
+        movies.forEach(function (movie) {
+            addMovieToList(movie);
+        });
     });
-    return promise;
-}
-
-function getVisa(visa) {
-    console.info('Visa received');
-    return visa;
-}
-
-function bookHotel(documents) {
-    console.log(documents);
-    // return new Promise((resolve) => {
-    //     setTimeout(function () {
-    //         console.info('book hotel');
-    //         resolve('hotel');
-    //     }, 2000);
-    // });
-    return Promise.reject('don`t book hotel');
-    // return Promise.resolve('book hotel');
-}
-
-function buyTickets(documents) {
-    console.log(documents);
-    return new Promise(function (resolve) {
-        setTimeout(function () {
-            console.info('buy tickets');
-            resolve('tickets');
-        }, 2000);
-    });
-}
-
-applyForVisa({}).then(getVisa).then(bookHotel).then(buyTickets).then(function (res) {
-    return console.log(res);
-}).catch(function (error) {
-    return console.error(error);
 });

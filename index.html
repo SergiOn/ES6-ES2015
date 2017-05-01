@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title>ES6, ES2015</title>
     <link rel="shortcut icon" href="" type="image/x-icon">
-    <script src="dist/promises.js"></script>
+    <script src="dist/promises.js" defer></script>
+    <style>
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        img {
+            flex: 1 100px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-
+    <input id="input" type="text">
+    <div id="movies" class="movies"></div>
 
 </body>
 </html>

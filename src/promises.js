@@ -1,45 +1,46 @@
-function applyForVisa(documents) {
-    console.log('Processing of an application');
+let input = document.getElementById('input');
+let movieList = document.getElementById('movies');
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(function () {
-            let visa = {visa: true};
-            Math.random() > 0 ? resolve(visa) : reject('The visa is denied: lack of documents');
-        }, 2000);
+function deleteMovies() {
+    while (movieList.firstElementChild) {
+        movieList.removeChild(movieList.firstElementChild);
+    }
+}
+
+function addMovieToList(movie) {
+    let img = document.createElement('img');
+    img.src = movie.Poster;
+    movieList.appendChild(img);
+}
+
+function getData(url, done) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            let json = JSON.parse(xhr.response);
+            console.log(json);
+            done(json.Search);
+        } else {
+            console.error(xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function (error) {
+        console.error(error);
+    };
+
+    xhr.send();
+}
+
+input.addEventListener('input', (e) => {
+    let search = e.target.value;
+
+    getData(`http://omdbapi.com/?s=${search}`, (movies = []) => {
+        deleteMovies();
+
+        movies.forEach((movie) => {
+            addMovieToList(movie);
+        });
     });
-    return promise;
-}
-
-function getVisa(visa) {
-    console.info('Visa received');
-    return visa;
-}
-
-function bookHotel(documents) {
-    console.log(documents);
-    // return new Promise((resolve) => {
-    //     setTimeout(function () {
-    //         console.info('book hotel');
-    //         resolve('hotel');
-    //     }, 2000);
-    // });
-    return Promise.reject('don`t book hotel');
-    // return Promise.resolve('book hotel');
-}
-
-function buyTickets(documents) {
-    console.log(documents);
-    return new Promise((resolve) => {
-        setTimeout(function () {
-            console.info('buy tickets');
-            resolve('tickets');
-        }, 2000);
-    });
-}
-
-applyForVisa({})
-    .then(getVisa)
-    .then(bookHotel)
-    .then(buyTickets)
-    .then((res) => console.log(res))
-    .catch((error) => console.error(error));
+});
