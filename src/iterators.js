@@ -16,6 +16,7 @@
 // }
 
 
+/*
 let randomGenerator = {
     generate() {
         return this[Symbol.iterator]();
@@ -38,3 +39,41 @@ let randomGenerator = {
 
 let random = randomGenerator.generate();
 console.log(random.next().value);
+*/
+
+
+class TaskList {
+    constructor() {
+        this.tasks = [];
+    }
+
+    addTasks(...tasks) {
+        this.tasks = this.tasks.concat(tasks);
+    }
+
+    [Symbol.iterator]() {
+        let tasks = this.tasks;
+        let index = 0;
+
+        return {
+            next() {
+                let result = { value: undefined, done: true };
+
+                if (index < tasks.length) {
+                    result.value = tasks[index];
+                    result.done = false;
+                    index++;
+                }
+
+                return result;
+            }
+        }
+    }
+}
+
+let taskList = new TaskList();
+taskList.addTasks('1ts', '2ts', '3ts');
+
+for (let task of taskList) {
+    console.log(task);
+}
