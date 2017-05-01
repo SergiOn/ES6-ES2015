@@ -40,6 +40,7 @@ function* generator() {
     console.log('arr:', arr);
     console.log('arr:', arr[2]);
     yield 30;
+    yield* [210, 220, 230];
     yield 40;
 }
 
@@ -49,3 +50,8 @@ console.log(iterator.next(2));
 console.log(iterator.next(3));
 console.log(iterator.next(4));
 console.log(iterator.next(5));
+console.log(iterator.next(6));
+console.log(iterator.next(7));
+console.log(iterator.next(8));
+console.log(iterator.next(9));
+console.log(iterator.next(10));

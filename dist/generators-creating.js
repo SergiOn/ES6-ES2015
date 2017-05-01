@@ -65,10 +65,13 @@ function generator() {
                     return 30;
 
                 case 14:
-                    _context.next = 16;
+                    return _context.delegateYield([210, 220, 230], 't3', 15);
+
+                case 15:
+                    _context.next = 17;
                     return 40;
 
-                case 16:
+                case 17:
                 case 'end':
                     return _context.stop();
             }
@@ -82,3 +85,8 @@ console.log(iterator.next(2));
 console.log(iterator.next(3));
 console.log(iterator.next(4));
 console.log(iterator.next(5));
+console.log(iterator.next(6));
+console.log(iterator.next(7));
+console.log(iterator.next(8));
+console.log(iterator.next(9));
+console.log(iterator.next(10));
