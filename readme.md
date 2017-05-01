@@ -26,3 +26,6 @@ setTimeout === window.setTimeout
 <h3>#16 Symbols</h3>
 <h3>#17 Iterators</h3>
 <h3>#17 Generators</h3>
+
+<h1>ES7</h1>
+<h3>Async functions</h3>
