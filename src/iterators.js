@@ -1,14 +1,14 @@
 let xmen = ['Cyclops', 'Wolverine', 'Rogue'];
 
-for (let xman of xmen) {
-    console.log(xman);
-}
+// for (let xman of xmen) {
+//     console.log(xman);
+// }
 
-console.log(typeof xmen[Symbol.iterator]);
 
 let iterator = xmen[Symbol.iterator]();
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
+let next = iterator.next();
+
+while (!next.done) {
+    console.log(next.value);
+    next = iterator.next();
+}
