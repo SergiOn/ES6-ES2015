@@ -8,34 +8,45 @@
 //     console.log('finish');
 // }
 
+// function generate() {
+//     let current = 1;
+//     console.log('start');
+//     return {
+//         [Symbol.iterator]() {
+//             return {
+//                 next() {
+//                     let result = {value: undefined, done: true};
+//
+//                     if (current <= 3) {
+//                         result.value = current;
+//                         result.done = false;
+//                         current++;
+//                     } else {
+//                         console.log('finish');
+//                     }
+//
+//                     return result;
+//                 }
+//             }
+//         }
+//     }
+// }
 
-function generate() {
-    let current = 1;
-    console.log('start');
-    return {
-        [Symbol.iterator]() {
-            return {
-                next() {
-                    let result = {value: undefined, done: true};
+// let iterator = generate()[Symbol.iterator]();
+// console.dir(iterator);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
 
-                    if (current <= 3) {
-                        result.value = current;
-                        result.done = false;
-                        current++;
-                    } else {
-                        console.log('finish');
-                    }
 
-                    return result;
-                }
-            }
-        }
+function* range(start, end) {
+    let current = start;
+    while (current <= end) {
+        yield current++;
     }
 }
 
-let iterator = generate()[Symbol.iterator]();
-console.dir(iterator);
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
+for (let num of range(1, 10)) {
+    console.log(num);
+}
