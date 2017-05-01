@@ -1,10 +1,17 @@
 'use strict';
 
-var symbol = Symbol.for('name');
-var symbol2 = Symbol.for('name');
-console.log(symbol);
-console.log(symbol2);
-console.log(symbol === symbol2);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var name = Symbol.keyFor(symbol);
-console.log(name);
+var user = _defineProperty({
+    username: 'r2d2'
+}, Symbol('password'), 'c3po');
+
+console.log(user); // Object {username: "r2d2", Symbol(password): "c3po"}
+console.log(user.password); // undefined
+console.log(user[Symbol('password')]); // undefined
+console.log(Object.keys(user)); // ["username"]
+console.log(Object.getOwnPropertyNames(user)); // ["username"]
+console.log(Object.getOwnPropertySymbols(user)); // [Symbol(password)]
+
+var password = user[Symbol.for('password')];
+console.log(password); // undefined

@@ -1,8 +1,14 @@
-let symbol = Symbol.for('name');
-let symbol2 = Symbol.for('name');
-console.log(symbol);
-console.log(symbol2);
-console.log(symbol === symbol2);
+let user = {
+    username: 'r2d2',
+    [Symbol('password')]: 'c3po'
+};
 
-let name = Symbol.keyFor(symbol);
-console.log(name);
+console.log(user);  // Object {username: "r2d2", Symbol(password): "c3po"}
+console.log(user.password);  // undefined
+console.log(user[Symbol('password')]);  // undefined
+console.log(Object.keys(user));  // ["username"]
+console.log(Object.getOwnPropertyNames(user));  // ["username"]
+console.log(Object.getOwnPropertySymbols(user));  // [Symbol(password)]
+
+let password = user[Symbol.for('password')];
+console.log(password);  // undefined
