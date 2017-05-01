@@ -16,13 +16,14 @@
 // }
 
 
-let idGenerator = {
+let randomGenerator = {
     [Symbol.iterator]() {
-        let id = 1;
+        let count = 0;
         return {
             next() {
-                let value = id < 100 ? id++ : undefined;
-                let done = !value;
+                let value = Math.ceil(Math.random() * 100);
+                let done = count > 10;
+                count += 1;
 
                 return { value, done };
             }
@@ -31,6 +32,6 @@ let idGenerator = {
 };
 
 
-for (let id of idGenerator) {
+for (let id of randomGenerator) {
     console.log(id);
 }

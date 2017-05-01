@@ -18,12 +18,13 @@
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var idGenerator = _defineProperty({}, Symbol.iterator, function () {
-    var id = 1;
+var randomGenerator = _defineProperty({}, Symbol.iterator, function () {
+    var count = 0;
     return {
         next: function next() {
-            var value = id < 100 ? id++ : undefined;
-            var done = !value;
+            var value = Math.ceil(Math.random() * 100);
+            var done = count > 10;
+            count += 1;
 
             return { value: value, done: done };
         }
@@ -35,7 +36,7 @@ var _didIteratorError = false;
 var _iteratorError = undefined;
 
 try {
-    for (var _iterator = idGenerator[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = randomGenerator[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var id = _step.value;
 
         console.log(id);
