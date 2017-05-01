@@ -86,8 +86,35 @@ Promise.all([p1, p2, p3]).then(function (a) {
     return console.error(error);
 });
 
-Promise.all([p1, p2, p3]).then(function (a) {
+Promise.race([p1, p2, p3]).then(function (a) {
     return console.log(a);
+}).catch(function (error) {
+    return console.error(error);
+});
+
+var batman = getData('http://omdbapi.com/?s=batman');
+var superman = getData('http://omdbapi.com/?s=superman');
+
+// batman.then((movies = []) => {
+//         movies.forEach((movie) => {
+//             addMovieToList(movie);
+//         });
+//     })
+//     .catch((error) => console.error(error));
+//
+// superman.then((movies = []) => {
+//         movies.forEach((movie) => {
+//             addMovieToList(movie);
+//         });
+//     })
+//     .catch((error) => console.error(error));
+
+Promise.race([batman, superman]).then(function () {
+    var movies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    movies.forEach(function (movie) {
+        addMovieToList(movie);
+    });
 }).catch(function (error) {
     return console.error(error);
 });
