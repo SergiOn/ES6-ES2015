@@ -1,28 +1,37 @@
 "use strict";
 
-var _marked = [generate].map(regeneratorRuntime.mark);
+// function* generate() {
+//     console.log('start');
+//     yield 10;
+//     yield 20;
+//     yield 30;
+//     console.log('finish');
+// }
+
 
 function generate() {
-    return regeneratorRuntime.wrap(function generate$(_context) {
-        while (1) {
-            switch (_context.prev = _context.next) {
-                case 0:
-                    console.log('start');
-                    _context.next = 3;
-                    return 10;
+    var current = 1;
+    console.log('start');
+    return {
+        next: function next() {
+            var result = { value: undefined, done: true };
 
-                case 3:
-                    console.log('finish');
-
-                case 4:
-                case 'end':
-                    return _context.stop();
+            if (current <= 3) {
+                result.value = current;
+                result.done = false;
+                current++;
+            } else {
+                console.log('finish');
             }
+
+            return result;
         }
-    }, _marked[0], this);
+    };
 }
 
 var iterator = generate();
 console.dir(iterator);
+console.log(iterator.next());
+console.log(iterator.next());
 console.log(iterator.next());
 console.log(iterator.next());
