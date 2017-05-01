@@ -48,3 +48,25 @@ input.addEventListener('input', (e) => {
         })
         .catch((error) => console.error(error));
 });
+
+
+function go(num) {
+    return new Promise((resolve, reject) => {
+        let delay = Math.ceil(Math.random() * 3000);
+        console.log(num, delay);
+        setTimeout(() => {
+            resolve(num);
+        }, delay);
+    });
+}
+
+let p1 = go(1);
+let p2 = go(2);
+let p3 = go(3);
+
+p1.then((a) => console.log(a));
+p2.then((a) => console.log(a));
+p3.then((a) => console.log(a));
+
+Promise.all([p1, p2, p3])
+    .then((a) => console.log(a));
