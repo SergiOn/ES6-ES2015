@@ -2,10 +2,15 @@
 
 function* generate() {
     console.log('start');
-    yield;
+    yield 10;
+    yield 20;
+    yield 30;
     console.log('finish');
 }
 
 let iterator = generate();
 console.dir(iterator);
-iterator.next();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());

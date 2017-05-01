@@ -9,7 +9,7 @@ function generate() {
                 case 0:
                     console.log('start');
                     _context.next = 3;
-                    return;
+                    return 10;
 
                 case 3:
                     console.log('finish');
@@ -24,4 +24,5 @@ function generate() {
 
 var iterator = generate();
 console.dir(iterator);
-iterator.next();
+console.log(iterator.next());
+console.log(iterator.next());
