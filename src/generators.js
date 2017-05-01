@@ -13,23 +13,27 @@ function generate() {
     let current = 1;
     console.log('start');
     return {
-        next() {
-            let result = { value: undefined, done: true };
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    let result = {value: undefined, done: true};
 
-            if (current <= 3) {
-                result.value = current;
-                result.done = false;
-                current++;
-            } else {
-                console.log('finish');
+                    if (current <= 3) {
+                        result.value = current;
+                        result.done = false;
+                        current++;
+                    } else {
+                        console.log('finish');
+                    }
+
+                    return result;
+                }
             }
-
-            return result;
         }
     }
 }
 
-let iterator = generate();
+let iterator = generate()[Symbol.iterator]();
 console.dir(iterator);
 console.log(iterator.next());
 console.log(iterator.next());

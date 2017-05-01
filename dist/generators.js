@@ -9,27 +9,31 @@
 // }
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function generate() {
     var current = 1;
     console.log('start');
-    return {
-        next: function next() {
-            var result = { value: undefined, done: true };
+    return _defineProperty({}, Symbol.iterator, function () {
+        return {
+            next: function next() {
+                var result = { value: undefined, done: true };
 
-            if (current <= 3) {
-                result.value = current;
-                result.done = false;
-                current++;
-            } else {
-                console.log('finish');
+                if (current <= 3) {
+                    result.value = current;
+                    result.done = false;
+                    current++;
+                } else {
+                    console.log('finish');
+                }
+
+                return result;
             }
-
-            return result;
-        }
-    };
+        };
+    });
 }
 
-var iterator = generate();
+var iterator = generate()[Symbol.iterator]();
 console.dir(iterator);
 console.log(iterator.next());
 console.log(iterator.next());
