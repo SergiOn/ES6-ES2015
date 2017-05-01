@@ -17,6 +17,10 @@
 
 
 let randomGenerator = {
+    generate() {
+        return this[Symbol.iterator]();
+    },
+
     [Symbol.iterator]() {
         let count = 0;
         return {
@@ -32,5 +36,5 @@ let randomGenerator = {
 };
 
 
-let random = randomGenerator[Symbol.iterator]();
+let random = randomGenerator.generate();
 console.log(random.next().value);

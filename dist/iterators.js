@@ -18,7 +18,11 @@
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var randomGenerator = _defineProperty({}, Symbol.iterator, function () {
+var randomGenerator = _defineProperty({
+    generate: function generate() {
+        return this[Symbol.iterator]();
+    }
+}, Symbol.iterator, function () {
     var count = 0;
     return {
         next: function next() {
@@ -31,5 +35,5 @@ var randomGenerator = _defineProperty({}, Symbol.iterator, function () {
     };
 });
 
-var random = randomGenerator.generate();
+var random = randomGenerator[Symbol.iterator]();
 console.log(random.next().value);
