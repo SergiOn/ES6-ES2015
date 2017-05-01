@@ -4,7 +4,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var user = _defineProperty({
     username: 'r2d2'
-}, Symbol('password'), 'c3po');
+}, Symbol.for('password'), 'c3po');
 
 console.log(user); // Object {username: "r2d2", Symbol(password): "c3po"}
 console.log(user.password); // undefined
@@ -14,4 +14,4 @@ console.log(Object.getOwnPropertyNames(user)); // ["username"]
 console.log(Object.getOwnPropertySymbols(user)); // [Symbol(password)]
 
 var password = user[Symbol.for('password')];
-console.log(password); // undefined
+console.log(password); // c3po
