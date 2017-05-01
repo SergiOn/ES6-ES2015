@@ -19,3 +19,8 @@ console.log(Object.getOwnPropertySymbols(user)); // [Symbol(password)]
 
 // let password = user[Symbol.for('password')];
 // console.log(password);  // c3po
+
+
+var object = _defineProperty({
+    iterator: 0
+}, Symbol.iterator, function () {});
