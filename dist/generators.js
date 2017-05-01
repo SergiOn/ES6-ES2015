@@ -40,45 +40,80 @@
 // console.log(iterator.next());
 
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/*
+function* range(start, end) {
+    let current = start;
+    while (current <= end) {
+        yield current++;
+    }
+}
 
-var _marked = [range].map(regeneratorRuntime.mark);
+for (let num of range(1, 10)) {
+    console.log(num);
+}
 
-function range(start, end) {
-    var current;
-    return regeneratorRuntime.wrap(function range$(_context) {
-        while (1) {
-            switch (_context.prev = _context.next) {
-                case 0:
-                    current = start;
+function range2(start, end) {
+    let current = start;
+    return {
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    let result = {value: undefined, done: true};
 
-                case 1:
-                    if (!(current <= end)) {
-                        _context.next = 6;
-                        break;
+                    if (current <= end) {
+                        result.value = current;
+                        result.done = false;
+                        current++;
                     }
-
-                    _context.next = 4;
-                    return current++;
-
-                case 4:
-                    _context.next = 1;
-                    break;
-
-                case 6:
-                case "end":
-                    return _context.stop();
+                    return result;
+                }
             }
         }
-    }, _marked[0], this);
+    }
 }
+
+for (let num of range2(1, 10)) {
+    console.log(num);
+}
+*/
+
+var numbers = {
+    range: regeneratorRuntime.mark(function range(start, end) {
+        var current;
+        return regeneratorRuntime.wrap(function range$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        current = start;
+
+                    case 1:
+                        if (!(current <= end)) {
+                            _context.next = 6;
+                            break;
+                        }
+
+                        _context.next = 4;
+                        return current++;
+
+                    case 4:
+                        _context.next = 1;
+                        break;
+
+                    case 6:
+                    case "end":
+                        return _context.stop();
+                }
+            }
+        }, range, this);
+    })
+};
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
 var _iteratorError = undefined;
 
 try {
-    for (var _iterator = range(1, 10)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = numbers.range(1, 10)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var num = _step.value;
 
         console.log(num);
@@ -94,49 +129,6 @@ try {
     } finally {
         if (_didIteratorError) {
             throw _iteratorError;
-        }
-    }
-}
-
-function range2(start, end) {
-    var current = start;
-    return _defineProperty({}, Symbol.iterator, function () {
-        return {
-            next: function next() {
-                var result = { value: undefined, done: true };
-
-                if (current <= end) {
-                    result.value = current;
-                    result.done = false;
-                    current++;
-                }
-                return result;
-            }
-        };
-    });
-}
-
-var _iteratorNormalCompletion2 = true;
-var _didIteratorError2 = false;
-var _iteratorError2 = undefined;
-
-try {
-    for (var _iterator2 = range2(1, 10)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var _num = _step2.value;
-
-        console.log(_num);
-    }
-} catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
-        }
-    } finally {
-        if (_didIteratorError2) {
-            throw _iteratorError2;
         }
     }
 }

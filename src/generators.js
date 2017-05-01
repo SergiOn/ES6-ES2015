@@ -40,6 +40,7 @@
 // console.log(iterator.next());
 
 
+/*
 function* range(start, end) {
     let current = start;
     while (current <= end) {
@@ -72,5 +73,20 @@ function range2(start, end) {
 }
 
 for (let num of range2(1, 10)) {
+    console.log(num);
+}
+*/
+
+
+let numbers = {
+    *range(start, end) {
+        let current = start;
+        while (current <= end) {
+            yield current++;
+        }
+    }
+};
+
+for (let num of numbers.range(1, 10)) {
     console.log(num);
 }
