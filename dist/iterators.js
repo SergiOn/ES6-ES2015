@@ -30,4 +30,10 @@ try {
 }
 
 console.log(_typeof(xmen[Symbol.iterator]));
-console.log(xmen[Symbol.iterator]());
+
+var iterator = xmen[Symbol.iterator]();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());

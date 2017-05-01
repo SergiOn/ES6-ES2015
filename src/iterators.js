@@ -5,4 +5,10 @@ for (let xman of xmen) {
 }
 
 console.log(typeof xmen[Symbol.iterator]);
-console.log(xmen[Symbol.iterator]());
+
+let iterator = xmen[Symbol.iterator]();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
