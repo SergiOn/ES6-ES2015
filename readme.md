@@ -21,3 +21,6 @@ setTimeout === window.setTimeout
 "this" in "setTimeout" === "window"
 </pre>
 <h3>#13 Destructuring Arrays</h3>
+<h3>#14 Destructuring Objects</h3>
+<h3>#15 Promises</h3>
+<h3>#16 Symbols</h3>
