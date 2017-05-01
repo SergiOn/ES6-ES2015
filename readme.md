@@ -24,3 +24,4 @@ setTimeout === window.setTimeout
 <h3>#14 Destructuring Objects</h3>
 <h3>#15 Promises</h3>
 <h3>#16 Symbols</h3>
+<h3>#17 Iterators</h3>
