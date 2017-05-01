@@ -25,3 +25,4 @@ setTimeout === window.setTimeout
 <h3>#15 Promises</h3>
 <h3>#16 Symbols</h3>
 <h3>#17 Iterators</h3>
+<h3>#17 Generators</h3>
