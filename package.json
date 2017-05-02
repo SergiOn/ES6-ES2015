@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "watch": "babel src -d dist -w",
+    "watch:es7": "babel src/es7 -d dist/es7 -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,9 @@
     "url": "https://github.com/SergiOn/ES6-ES2015-screencast/issues"
   },
   "homepage": "https://github.com/SergiOn/ES6-ES2015-screencast#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
@@ -31,8 +35,5 @@
     "presets": [
       "es2015"
     ]
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.23.0"
   }
 }

@@ -147,19 +147,95 @@
 
 (function () {
 
-    function otherAsyncFunc() {
-        return new Promise((res, rej) => {
+    function otherAsyncFunc(request = 0) {
+        return new Promise((resolve, reject) => {
             setTimeout(function () {
-                rej(new Error('Error'));
+                resolve(5500 + request);
             }, 2000);
         });
     }
 
-    async function asyncFunc() {}
-    asyncFunc();
+    const fetchJson = co.wrap(function* () {
+        try {
+            let request = yield otherAsyncFunc();
+            let text = yield otherAsyncFunc(request);
+            return JSON.parse(text + 80);
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+        }
+    });
+    fetchJson(true)
+        .then(function (val) {
+            console.log(val);
+        });
 
-    // Equivalent to:
-    function promiseFunc() {}
-    promiseFunc();
 
-}());
+    async function fetchJsonAsync() {
+        try {
+            let request = await otherAsyncFunc();
+            let text = await otherAsyncFunc(request);
+            return JSON.parse(text + 1166);
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+        }
+    }
+    fetchJsonAsync().then(function (val) {
+        console.log(val);
+    });
+
+});
+
+(function () {
+
+    async function asyncFunc() {
+        console.log('asyncFunc()'); // (A)
+        return 'abc';
+    }
+    asyncFunc().
+    then(x => console.log(`Resolved: ${x}`)); // (B)
+    console.log('main'); // (C)
+
+    // Output:
+    // asyncFunc()
+    // main
+    // Resolved: abc
+
+});
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    async function asyncFunc() {
+        return Promise.resolve(123);
+    }
+    asyncFunc()
+        .then(x => console.log(x)); // 123
+
+    async function asyncFunc2() {
+        return Promise.reject(new Error('Problem!'));
+    }
+    //asyncFunc2()
+        //.catch(err => console.error(err)); // Error: Problem!
+
+    async function asyncFunc3() {
+        return otherAsyncFunc();
+    }
+    asyncFunc3()
+        .then(x => console.log('asyncFunc3:', x));
+
+    async function asyncFunc4() {
+        return await otherAsyncFunc();
+    }
+    asyncFunc4()
+        .then(x => console.log('asyncFunc4:', x));
+
+})();

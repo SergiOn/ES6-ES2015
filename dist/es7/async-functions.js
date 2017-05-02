@@ -247,27 +247,198 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 (function () {
 
     function otherAsyncFunc() {
-        return new Promise(function (res, rej) {
+        var request = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+        return new Promise(function (resolve, reject) {
             setTimeout(function () {
-                rej(new Error('Error'));
+                resolve(5500 + request);
+            }, 2000);
+        });
+    }
+
+    var fetchJson = co.wrap(regeneratorRuntime.mark(function _callee() {
+        var request, text;
+        return regeneratorRuntime.wrap(function _callee$(_context7) {
+            while (1) {
+                switch (_context7.prev = _context7.next) {
+                    case 0:
+                        _context7.prev = 0;
+                        _context7.next = 3;
+                        return otherAsyncFunc();
+
+                    case 3:
+                        request = _context7.sent;
+                        _context7.next = 6;
+                        return otherAsyncFunc(request);
+
+                    case 6:
+                        text = _context7.sent;
+                        return _context7.abrupt('return', JSON.parse(text + 80));
+
+                    case 10:
+                        _context7.prev = 10;
+                        _context7.t0 = _context7['catch'](0);
+
+                        console.log('ERROR: ' + _context7.t0.stack);
+
+                    case 13:
+                    case 'end':
+                        return _context7.stop();
+                }
+            }
+        }, _callee, this, [[0, 10]]);
+    }));
+    fetchJson(true).then(function (val) {
+        console.log(val);
+    });
+
+    function fetchJsonAsync() {
+        var request, text;
+        return regeneratorRuntime.async(function fetchJsonAsync$(_context8) {
+            while (1) {
+                switch (_context8.prev = _context8.next) {
+                    case 0:
+                        _context8.prev = 0;
+                        _context8.next = 3;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 3:
+                        request = _context8.sent;
+                        _context8.next = 6;
+                        return regeneratorRuntime.awrap(otherAsyncFunc(request));
+
+                    case 6:
+                        text = _context8.sent;
+                        return _context8.abrupt('return', JSON.parse(text + 1166));
+
+                    case 10:
+                        _context8.prev = 10;
+                        _context8.t0 = _context8['catch'](0);
+
+                        console.log('ERROR: ' + _context8.t0.stack);
+
+                    case 13:
+                    case 'end':
+                        return _context8.stop();
+                }
+            }
+        }, null, this, [[0, 10]]);
+    }
+    fetchJsonAsync().then(function (val) {
+        console.log(val);
+    });
+});
+
+(function () {
+
+    function asyncFunc() {
+        return regeneratorRuntime.async(function asyncFunc$(_context9) {
+            while (1) {
+                switch (_context9.prev = _context9.next) {
+                    case 0:
+                        console.log('asyncFunc()'); // (A)
+                        return _context9.abrupt('return', 'abc');
+
+                    case 2:
+                    case 'end':
+                        return _context9.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc().then(function (x) {
+        return console.log('Resolved: ' + x);
+    }); // (B)
+    console.log('main'); // (C)
+
+    // Output:
+    // asyncFunc()
+    // main
+    // Resolved: abc
+});
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve(5500);
             }, 2000);
         });
     }
 
     function asyncFunc() {
-        return regeneratorRuntime.async(function asyncFunc$(_context7) {
+        return regeneratorRuntime.async(function asyncFunc$(_context10) {
             while (1) {
-                switch (_context7.prev = _context7.next) {
+                switch (_context10.prev = _context10.next) {
                     case 0:
+                        return _context10.abrupt('return', Promise.resolve(123));
+
+                    case 1:
                     case 'end':
-                        return _context7.stop();
+                        return _context10.stop();
                 }
             }
         }, null, this);
     }
-    asyncFunc();
+    asyncFunc().then(function (x) {
+        return console.log(x);
+    }); // 123
 
-    // Equivalent to:
-    function promiseFunc() {}
-    promiseFunc();
+    function asyncFunc2() {
+        return regeneratorRuntime.async(function asyncFunc2$(_context11) {
+            while (1) {
+                switch (_context11.prev = _context11.next) {
+                    case 0:
+                        return _context11.abrupt('return', Promise.reject(new Error('Problem!')));
+
+                    case 1:
+                    case 'end':
+                        return _context11.stop();
+                }
+            }
+        }, null, this);
+    }
+    //asyncFunc2()
+    //.catch(err => console.error(err)); // Error: Problem!
+
+    function asyncFunc3() {
+        return regeneratorRuntime.async(function asyncFunc3$(_context12) {
+            while (1) {
+                switch (_context12.prev = _context12.next) {
+                    case 0:
+                        return _context12.abrupt('return', otherAsyncFunc());
+
+                    case 1:
+                    case 'end':
+                        return _context12.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc3().then(function (x) {
+        return console.log('asyncFunc3:', x);
+    });
+
+    function asyncFunc4() {
+        return regeneratorRuntime.async(function asyncFunc4$(_context13) {
+            while (1) {
+                switch (_context13.prev = _context13.next) {
+                    case 0:
+                        _context13.next = 2;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 2:
+                        return _context13.abrupt('return', _context13.sent);
+
+                    case 3:
+                    case 'end':
+                        return _context13.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc4().then(function (x) {
+        return console.log('asyncFunc4:', x);
+    });
 })();
