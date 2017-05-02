@@ -1040,4 +1040,110 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         }, null, this);
     }
     logContent2([1, 2, 3, 4, 5]);
+});
+
+(function () {
+    var _this6 = this;
+
+    function otherAsyncFunc() {
+        return regeneratorRuntime.async(function otherAsyncFunc$(_context37) {
+            while (1) {
+                switch (_context37.prev = _context37.next) {
+                    case 0:
+                        return _context37.abrupt('return', new Promise(function (resolve, reject) {
+                            setTimeout(function () {
+                                resolve(5500);
+                            }, 2000);
+                        }));
+
+                    case 1:
+                    case 'end':
+                        return _context37.stop();
+                }
+            }
+        }, null, this);
+    }
+
+    function main() {
+        return regeneratorRuntime.async(function main$(_context38) {
+            while (1) {
+                switch (_context38.prev = _context38.next) {
+                    case 0:
+                        _context38.t0 = console;
+                        _context38.next = 3;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 3:
+                        _context38.t1 = _context38.sent;
+
+                        _context38.t0.log.call(_context38.t0, _context38.t1);
+
+                    case 5:
+                    case 'end':
+                        return _context38.stop();
+                }
+            }
+        }, null, this);
+    }
+    main();
+
+    (function _callee7() {
+        return regeneratorRuntime.async(function _callee7$(_context39) {
+            while (1) {
+                switch (_context39.prev = _context39.next) {
+                    case 0:
+                        _context39.t0 = console;
+                        _context39.next = 3;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 3:
+                        _context39.t1 = _context39.sent;
+
+                        _context39.t0.log.call(_context39.t0, _context39.t1);
+
+                    case 5:
+                    case 'end':
+                        return _context39.stop();
+                }
+            }
+        }, null, this);
+    })();
+
+    (function _callee8() {
+        return regeneratorRuntime.async(function _callee8$(_context40) {
+            while (1) {
+                switch (_context40.prev = _context40.next) {
+                    case 0:
+                        _context40.t0 = console;
+                        _context40.next = 3;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 3:
+                        _context40.t1 = _context40.sent;
+
+                        _context40.t0.log.call(_context40.t0, _context40.t1);
+
+                    case 5:
+                    case 'end':
+                        return _context40.stop();
+                }
+            }
+        }, null, _this6);
+    })();
+
+    function foo() {
+        return regeneratorRuntime.async(function foo$(_context41) {
+            while (1) {
+                switch (_context41.prev = _context41.next) {
+                    case 0:
+                        throw new Error('Problem!');
+
+                    case 1:
+                    case 'end':
+                        return _context41.stop();
+                }
+            }
+        }, null, this);
+    }
+    // foo();
 })();

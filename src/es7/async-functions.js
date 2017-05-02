@@ -326,7 +326,7 @@
 
     async function otherAsyncFunc(data) {
         return new Promise((resolve, reject) => {
-            setTimeout(function () {
+            setTimeout(() => {
                 resolve(data * 100);
             }, 2000);
         });
@@ -374,7 +374,7 @@
 
     async function otherAsyncFunc(data) {
         return new Promise((resolve, reject) => {
-            setTimeout(function () {
+            setTimeout(() => {
                 resolve(data * 100);
             }, 2000);
         });
@@ -429,5 +429,35 @@
             }));
     }
     logContent2([1, 2, 3, 4, 5]);
+
+});
+
+(function () {
+
+    async function otherAsyncFunc() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    async function main() {
+        console.log(await otherAsyncFunc());
+    }
+    main();
+
+    (async function () {
+        console.log(await otherAsyncFunc());
+    })();
+
+    (async () => {
+        console.log(await otherAsyncFunc());
+    })();
+
+    async function foo() {
+        throw new Error('Problem!');
+    }
+    // foo();
 
 })();
