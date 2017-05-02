@@ -320,4 +320,114 @@
     asyncFunc4()
         .then(x => console.log('asyncFunc4:', x));
 
+});
+
+(function () {
+
+    async function otherAsyncFunc(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(data * 100);
+            }, 2000);
+        });
+    }
+
+    async function asyncFunc(urls) {
+        return urls.map(async (url) => {
+            const content = await otherAsyncFunc(url);
+            return content; // Promise
+        });
+    }
+    asyncFunc([1, 2, 3, 4, 5])
+        .then(x => console.log('asyncFunc:', x));
+
+    async function asyncFunc2(urls) {
+        const promiseArray = urls.map(async (url) => {
+            return await otherAsyncFunc(url);
+        });
+        return await Promise.all(promiseArray);
+    }
+    asyncFunc2([1, 2, 3, 4, 5])
+        .then(x => console.log('asyncFunc2:', x));
+
+    async function asyncFunc3(urls) {
+        const promiseArray = urls.map((url) => {
+            return otherAsyncFunc(url);
+        });
+        return await Promise.all(promiseArray);
+    }
+    asyncFunc3([1, 2, 3, 4, 5])
+        .then(x => console.log('asyncFunc3:', x));
+
+    async function asyncFunc4(urls) {
+        const promiseArray = await urls.map((url) => {
+            return otherAsyncFunc(url);
+        });
+        return Promise.all(promiseArray);
+    }
+    asyncFunc4([1, 2, 3, 4, 5])
+        .then(x => console.log('asyncFunc4:', x));
+
+});
+
+(function () {
+
+    async function otherAsyncFunc(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(data * 100);
+            }, 2000);
+        });
+    }
+
+    async function asyncFunc(urls) {
+        urls.forEach(async (url) => {
+            const content = await otherAsyncFunc(url);
+            console.log('asyncFunc:', content);
+        });
+    }
+    asyncFunc([1, 2, 3, 4, 5])
+        .then(x => console.log('asyncFunc:', x));
+
+    async function asyncFunc2(urls) {
+        urls.forEach(async (url) => {
+            const content = otherAsyncFunc(url);
+            console.log('asyncFunc2:', content); // pending
+        });
+    }
+    asyncFunc2([1, 2, 3, 4, 5]);
+
+    async function asyncFunc3(urls) {
+        urls.forEach((url) => {
+            const content = otherAsyncFunc(url);
+            console.log('asyncFunc3:', content); // pending
+        });
+    }
+    asyncFunc3([1, 2, 3, 4, 5]);
+
+    async function asyncFunc4(urls) {
+        urls.forEach((url) => {
+            // const content = await otherAsyncFunc(url);
+            // console.log('asyncFunc4:', content); // ^ Uncaught SyntaxError: Unexpected identifier
+        });
+    }
+    asyncFunc4([1, 2, 3, 4, 5]);
+
+    async function logContent(urls) {
+        for (let url of urls) {
+            const content = await otherAsyncFunc(url);
+            console.log('logContent:', content);  // steps
+        }
+    }
+    logContent([1, 2, 3, 4, 5]);
+
+    async function logContent2(urls) {
+        await Promise.all(urls.map(
+            async url => {
+                const content = await otherAsyncFunc(url);
+                console.log('logContent2:', content);
+            }));
+    }
+    logContent2([1, 2, 3, 4, 5]);
+
 })();

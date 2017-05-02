@@ -635,4 +635,409 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     asyncFunc4().then(function (x) {
         return console.log('asyncFunc4:', x);
     });
+});
+
+(function () {
+
+    function otherAsyncFunc(data) {
+        return regeneratorRuntime.async(function otherAsyncFunc$(_context20) {
+            while (1) {
+                switch (_context20.prev = _context20.next) {
+                    case 0:
+                        return _context20.abrupt('return', new Promise(function (resolve, reject) {
+                            setTimeout(function () {
+                                resolve(data * 100);
+                            }, 2000);
+                        }));
+
+                    case 1:
+                    case 'end':
+                        return _context20.stop();
+                }
+            }
+        }, null, this);
+    }
+
+    function asyncFunc(urls) {
+        var _this = this;
+
+        return regeneratorRuntime.async(function asyncFunc$(_context22) {
+            while (1) {
+                switch (_context22.prev = _context22.next) {
+                    case 0:
+                        return _context22.abrupt('return', urls.map(function _callee2(url) {
+                            var content;
+                            return regeneratorRuntime.async(function _callee2$(_context21) {
+                                while (1) {
+                                    switch (_context21.prev = _context21.next) {
+                                        case 0:
+                                            _context21.next = 2;
+                                            return regeneratorRuntime.awrap(otherAsyncFunc(url));
+
+                                        case 2:
+                                            content = _context21.sent;
+                                            return _context21.abrupt('return', content);
+
+                                        case 4:
+                                        case 'end':
+                                            return _context21.stop();
+                                    }
+                                }
+                            }, null, _this);
+                        }));
+
+                    case 1:
+                    case 'end':
+                        return _context22.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc([1, 2, 3, 4, 5]).then(function (x) {
+        return console.log('asyncFunc:', x);
+    });
+
+    function asyncFunc2(urls) {
+        var _this2 = this;
+
+        var promiseArray;
+        return regeneratorRuntime.async(function asyncFunc2$(_context24) {
+            while (1) {
+                switch (_context24.prev = _context24.next) {
+                    case 0:
+                        promiseArray = urls.map(function _callee3(url) {
+                            return regeneratorRuntime.async(function _callee3$(_context23) {
+                                while (1) {
+                                    switch (_context23.prev = _context23.next) {
+                                        case 0:
+                                            _context23.next = 2;
+                                            return regeneratorRuntime.awrap(otherAsyncFunc(url));
+
+                                        case 2:
+                                            return _context23.abrupt('return', _context23.sent);
+
+                                        case 3:
+                                        case 'end':
+                                            return _context23.stop();
+                                    }
+                                }
+                            }, null, _this2);
+                        });
+                        _context24.next = 3;
+                        return regeneratorRuntime.awrap(Promise.all(promiseArray));
+
+                    case 3:
+                        return _context24.abrupt('return', _context24.sent);
+
+                    case 4:
+                    case 'end':
+                        return _context24.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc2([1, 2, 3, 4, 5]).then(function (x) {
+        return console.log('asyncFunc2:', x);
+    });
+
+    function asyncFunc3(urls) {
+        var promiseArray;
+        return regeneratorRuntime.async(function asyncFunc3$(_context25) {
+            while (1) {
+                switch (_context25.prev = _context25.next) {
+                    case 0:
+                        promiseArray = urls.map(function (url) {
+                            return otherAsyncFunc(url);
+                        });
+                        _context25.next = 3;
+                        return regeneratorRuntime.awrap(Promise.all(promiseArray));
+
+                    case 3:
+                        return _context25.abrupt('return', _context25.sent);
+
+                    case 4:
+                    case 'end':
+                        return _context25.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc3([1, 2, 3, 4, 5]).then(function (x) {
+        return console.log('asyncFunc3:', x);
+    });
+
+    function asyncFunc4(urls) {
+        var promiseArray;
+        return regeneratorRuntime.async(function asyncFunc4$(_context26) {
+            while (1) {
+                switch (_context26.prev = _context26.next) {
+                    case 0:
+                        _context26.next = 2;
+                        return regeneratorRuntime.awrap(urls.map(function (url) {
+                            return otherAsyncFunc(url);
+                        }));
+
+                    case 2:
+                        promiseArray = _context26.sent;
+                        return _context26.abrupt('return', Promise.all(promiseArray));
+
+                    case 4:
+                    case 'end':
+                        return _context26.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc4([1, 2, 3, 4, 5]).then(function (x) {
+        return console.log('asyncFunc4:', x);
+    });
+});
+
+(function () {
+
+    function otherAsyncFunc(data) {
+        return regeneratorRuntime.async(function otherAsyncFunc$(_context27) {
+            while (1) {
+                switch (_context27.prev = _context27.next) {
+                    case 0:
+                        return _context27.abrupt('return', new Promise(function (resolve, reject) {
+                            setTimeout(function () {
+                                resolve(data * 100);
+                            }, 2000);
+                        }));
+
+                    case 1:
+                    case 'end':
+                        return _context27.stop();
+                }
+            }
+        }, null, this);
+    }
+
+    function asyncFunc(urls) {
+        var _this3 = this;
+
+        return regeneratorRuntime.async(function asyncFunc$(_context29) {
+            while (1) {
+                switch (_context29.prev = _context29.next) {
+                    case 0:
+                        urls.forEach(function _callee4(url) {
+                            var content;
+                            return regeneratorRuntime.async(function _callee4$(_context28) {
+                                while (1) {
+                                    switch (_context28.prev = _context28.next) {
+                                        case 0:
+                                            _context28.next = 2;
+                                            return regeneratorRuntime.awrap(otherAsyncFunc(url));
+
+                                        case 2:
+                                            content = _context28.sent;
+
+                                            console.log('asyncFunc:', content);
+
+                                        case 4:
+                                        case 'end':
+                                            return _context28.stop();
+                                    }
+                                }
+                            }, null, _this3);
+                        });
+
+                    case 1:
+                    case 'end':
+                        return _context29.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc([1, 2, 3, 4, 5]).then(function (x) {
+        return console.log('asyncFunc:', x);
+    });
+
+    function asyncFunc2(urls) {
+        var _this4 = this;
+
+        return regeneratorRuntime.async(function asyncFunc2$(_context31) {
+            while (1) {
+                switch (_context31.prev = _context31.next) {
+                    case 0:
+                        urls.forEach(function _callee5(url) {
+                            var content;
+                            return regeneratorRuntime.async(function _callee5$(_context30) {
+                                while (1) {
+                                    switch (_context30.prev = _context30.next) {
+                                        case 0:
+                                            content = otherAsyncFunc(url);
+
+                                            console.log('asyncFunc2:', content); // pending
+
+                                        case 2:
+                                        case 'end':
+                                            return _context30.stop();
+                                    }
+                                }
+                            }, null, _this4);
+                        });
+
+                    case 1:
+                    case 'end':
+                        return _context31.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc2([1, 2, 3, 4, 5]);
+
+    function asyncFunc3(urls) {
+        return regeneratorRuntime.async(function asyncFunc3$(_context32) {
+            while (1) {
+                switch (_context32.prev = _context32.next) {
+                    case 0:
+                        urls.forEach(function (url) {
+                            var content = otherAsyncFunc(url);
+                            console.log('asyncFunc3:', content); // pending
+                        });
+
+                    case 1:
+                    case 'end':
+                        return _context32.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc3([1, 2, 3, 4, 5]);
+
+    function asyncFunc4(urls) {
+        return regeneratorRuntime.async(function asyncFunc4$(_context33) {
+            while (1) {
+                switch (_context33.prev = _context33.next) {
+                    case 0:
+                        urls.forEach(function (url) {
+                            // const content = await otherAsyncFunc(url);
+                            // console.log('asyncFunc4:', content); // ^ Uncaught SyntaxError: Unexpected identifier
+                        });
+
+                    case 1:
+                    case 'end':
+                        return _context33.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc4([1, 2, 3, 4, 5]);
+
+    function logContent(urls) {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, url, content;
+
+        return regeneratorRuntime.async(function logContent$(_context34) {
+            while (1) {
+                switch (_context34.prev = _context34.next) {
+                    case 0:
+                        _iteratorNormalCompletion = true;
+                        _didIteratorError = false;
+                        _iteratorError = undefined;
+                        _context34.prev = 3;
+                        _iterator = urls[Symbol.iterator]();
+
+                    case 5:
+                        if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                            _context34.next = 14;
+                            break;
+                        }
+
+                        url = _step.value;
+                        _context34.next = 9;
+                        return regeneratorRuntime.awrap(otherAsyncFunc(url));
+
+                    case 9:
+                        content = _context34.sent;
+
+                        console.log('logContent:', content); // steps
+
+                    case 11:
+                        _iteratorNormalCompletion = true;
+                        _context34.next = 5;
+                        break;
+
+                    case 14:
+                        _context34.next = 20;
+                        break;
+
+                    case 16:
+                        _context34.prev = 16;
+                        _context34.t0 = _context34['catch'](3);
+                        _didIteratorError = true;
+                        _iteratorError = _context34.t0;
+
+                    case 20:
+                        _context34.prev = 20;
+                        _context34.prev = 21;
+
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+
+                    case 23:
+                        _context34.prev = 23;
+
+                        if (!_didIteratorError) {
+                            _context34.next = 26;
+                            break;
+                        }
+
+                        throw _iteratorError;
+
+                    case 26:
+                        return _context34.finish(23);
+
+                    case 27:
+                        return _context34.finish(20);
+
+                    case 28:
+                    case 'end':
+                        return _context34.stop();
+                }
+            }
+        }, null, this, [[3, 16, 20, 28], [21,, 23, 27]]);
+    }
+    logContent([1, 2, 3, 4, 5]);
+
+    function logContent2(urls) {
+        var _this5 = this;
+
+        return regeneratorRuntime.async(function logContent2$(_context36) {
+            while (1) {
+                switch (_context36.prev = _context36.next) {
+                    case 0:
+                        _context36.next = 2;
+                        return regeneratorRuntime.awrap(Promise.all(urls.map(function _callee6(url) {
+                            var content;
+                            return regeneratorRuntime.async(function _callee6$(_context35) {
+                                while (1) {
+                                    switch (_context35.prev = _context35.next) {
+                                        case 0:
+                                            _context35.next = 2;
+                                            return regeneratorRuntime.awrap(otherAsyncFunc(url));
+
+                                        case 2:
+                                            content = _context35.sent;
+
+                                            console.log('logContent2:', content);
+
+                                        case 4:
+                                        case 'end':
+                                            return _context35.stop();
+                                    }
+                                }
+                            }, null, _this5);
+                        })));
+
+                    case 2:
+                    case 'end':
+                        return _context36.stop();
+                }
+            }
+        }, null, this);
+    }
+    logContent2([1, 2, 3, 4, 5]);
 })();
