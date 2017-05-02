@@ -441,4 +441,198 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     asyncFunc4().then(function (x) {
         return console.log('asyncFunc4:', x);
     });
+});
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    function asyncFunc() {
+        var value, value2;
+        return regeneratorRuntime.async(function asyncFunc$(_context14) {
+            while (1) {
+                switch (_context14.prev = _context14.next) {
+                    case 0:
+                        value = otherAsyncFunc(); // missing `await`!
+
+                        value2 = otherAsyncFunc(); // missing `await`!
+
+                        return _context14.abrupt('return', { value: value, value2: value2 });
+
+                    case 3:
+                    case 'end':
+                        return _context14.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc().then(function (x) {
+        return console.log('asyncFunc:', x);
+    });
+
+    function asyncFunc2() {
+        var value, value2;
+        return regeneratorRuntime.async(function asyncFunc2$(_context15) {
+            while (1) {
+                switch (_context15.prev = _context15.next) {
+                    case 0:
+                        _context15.next = 2;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 2:
+                        value = _context15.sent;
+                        _context15.next = 5;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 5:
+                        value2 = _context15.sent;
+                        return _context15.abrupt('return', { value: value, value2: value2 });
+
+                    case 7:
+                    case 'end':
+                        return _context15.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc2().then(function (x) {
+        return console.log('asyncFunc2:', x);
+    });
+});
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    function asyncFunc() {
+        var value, value2;
+        return regeneratorRuntime.async(function asyncFunc$(_context16) {
+            while (1) {
+                switch (_context16.prev = _context16.next) {
+                    case 0:
+                        value = otherAsyncFunc();
+
+                        console.log('asyncFunc:value', value);
+                        value2 = otherAsyncFunc();
+
+                        console.log('asyncFunc:value2', value2);
+                        return _context16.abrupt('return', 'asyncFunc');
+
+                    case 5:
+                    case 'end':
+                        return _context16.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc().then(function (x) {
+        return console.log('asyncFunc:', x);
+    });
+
+    function asyncFunc2() {
+        var value, value2;
+        return regeneratorRuntime.async(function asyncFunc2$(_context17) {
+            while (1) {
+                switch (_context17.prev = _context17.next) {
+                    case 0:
+                        _context17.next = 2;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 2:
+                        value = _context17.sent;
+
+                        console.log('asyncFunc2:value', value);
+                        _context17.next = 6;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 6:
+                        value2 = _context17.sent;
+
+                        console.log('asyncFunc2:value2', value2);
+                        return _context17.abrupt('return', 'asyncFunc2');
+
+                    case 9:
+                    case 'end':
+                        return _context17.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc2().then(function (x) {
+        return console.log('asyncFunc2:', x);
+    });
+
+    function asyncFunc3() {
+        var value, value2;
+        return regeneratorRuntime.async(function asyncFunc3$(_context18) {
+            while (1) {
+                switch (_context18.prev = _context18.next) {
+                    case 0:
+                        _context18.next = 2;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 2:
+                        value = _context18.sent;
+                        _context18.next = 5;
+                        return regeneratorRuntime.awrap(otherAsyncFunc());
+
+                    case 5:
+                        value2 = _context18.sent;
+
+                        console.log('asyncFunc3:value', value);
+                        console.log('asyncFunc3:value2', value2);
+                        return _context18.abrupt('return', 'asyncFunc3');
+
+                    case 9:
+                    case 'end':
+                        return _context18.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc3().then(function (x) {
+        return console.log('asyncFunc3:', x);
+    });
+
+    function asyncFunc4() {
+        var _ref5, _ref6, result1, result2;
+
+        return regeneratorRuntime.async(function asyncFunc4$(_context19) {
+            while (1) {
+                switch (_context19.prev = _context19.next) {
+                    case 0:
+                        _context19.next = 2;
+                        return regeneratorRuntime.awrap(Promise.all([otherAsyncFunc(), otherAsyncFunc()]));
+
+                    case 2:
+                        _ref5 = _context19.sent;
+                        _ref6 = _slicedToArray(_ref5, 2);
+                        result1 = _ref6[0];
+                        result2 = _ref6[1];
+
+                        console.log([result1, result2]);
+                        return _context19.abrupt('return', [result1, result2]);
+
+                    case 8:
+                    case 'end':
+                        return _context19.stop();
+                }
+            }
+        }, null, this);
+    }
+    asyncFunc4().then(function (x) {
+        return console.log('asyncFunc4:', x);
+    });
 })();

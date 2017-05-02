@@ -238,4 +238,86 @@
     asyncFunc4()
         .then(x => console.log('asyncFunc4:', x));
 
+});
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    async function asyncFunc() {
+        const value = otherAsyncFunc(); // missing `await`!
+        const value2 = otherAsyncFunc(); // missing `await`!
+        return { value, value2 };
+    }
+    asyncFunc()
+        .then(x => console.log('asyncFunc:', x));
+
+    async function asyncFunc2() {
+        const value = await otherAsyncFunc();
+        const value2 = await otherAsyncFunc();
+        return { value, value2 };
+    }
+    asyncFunc2()
+        .then(x => console.log('asyncFunc2:', x));
+
+});
+
+
+(function () {
+
+    function otherAsyncFunc() {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(5500);
+            }, 2000);
+        });
+    }
+
+    async function asyncFunc() {
+        const value = otherAsyncFunc();
+        console.log('asyncFunc:value', value);
+        const value2 = otherAsyncFunc();
+        console.log('asyncFunc:value2', value2);
+        return 'asyncFunc';
+    }
+    asyncFunc()
+        .then(x => console.log('asyncFunc:', x));
+
+    async function asyncFunc2() {
+        const value = await otherAsyncFunc();
+        console.log('asyncFunc2:value', value);
+        const value2 = await otherAsyncFunc();
+        console.log('asyncFunc2:value2', value2);
+        return 'asyncFunc2';
+    }
+    asyncFunc2()
+        .then(x => console.log('asyncFunc2:', x));
+
+    async function asyncFunc3() {
+        const value = await otherAsyncFunc();
+        const value2 = await otherAsyncFunc();
+        console.log('asyncFunc3:value', value);
+        console.log('asyncFunc3:value2', value2);
+        return 'asyncFunc3';
+    }
+    asyncFunc3()
+        .then(x => console.log('asyncFunc3:', x));
+
+    async function asyncFunc4() {
+        const [result1, result2] = await Promise.all([
+            otherAsyncFunc(),
+            otherAsyncFunc(),
+        ]);
+        console.log([result1, result2]);
+        return [result1, result2];
+    }
+    asyncFunc4()
+        .then(x => console.log('asyncFunc4:', x));
+
 })();
